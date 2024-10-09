@@ -23,9 +23,9 @@ class ReturnException(BaseModel):
 
 class Return200(BaseModel):
     status: str
-    startTime: str
-    endTime: str
-    duration: str
+    startTime: float
+    endTime: float
+    duration: float
 
 class Return406(BaseModel):
     status: str
@@ -58,7 +58,7 @@ def repetition(n: int)-> dict:
     }
 
 @app.get("/loops/{loopNumber}", status_code=200, responses={
-    201: {
+    200: {
         "model": Return200
     },
     406: {
@@ -85,4 +85,4 @@ def run_loops(loopNumber: int, q: Union[str, None] = None):
         )
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80)
+    uvicorn.run(app, host="0.0.0.0", port=81)
